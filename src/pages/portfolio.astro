@@ -1,0 +1,109 @@
+---
+import Base from '../layouts/Base.astro';
+
+const projects = [
+  { title: 'Bottega Ceramica Urbana', category: 'E-commerce', cat: 'ecommerce', year: '2026', slug: 'bottega-ceramica-urbana', color: 'bg-amber-100' },
+  { title: 'Studio Legale Rossi', category: 'Sito vetrina', cat: 'vetrina', year: '2025', slug: 'studio-legale-rossi', color: 'bg-blue-100' },
+  { title: 'Osteria del Borgo', category: 'Sito + Prenotazioni', cat: 'vetrina', year: '2025', slug: 'osteria-del-borgo', color: 'bg-rose-100' },
+  { title: 'Atelier Marchigiano', category: 'Restyling', cat: 'restyling', year: '2024', slug: 'atelier-marchigiano', color: 'bg-emerald-100' },
+  { title: 'Falegnameria F.lli Bianchi', category: 'Sito vetrina', cat: 'vetrina', year: '2024', slug: 'falegnameria-f-lli-bianchi', color: 'bg-stone-200' },
+  { title: 'Vini Colline', category: 'E-commerce', cat: 'ecommerce', year: '2023', slug: 'vini-colline', color: 'bg-red-100' },
+];
+---
+<Base
+  title="Portfolio — Progetti recenti"
+  description="Una selezione di siti web realizzati per artigiani, commercianti e professionisti delle Marche.">
+
+  <section class="section pt-32 md:pt-40">
+    <span class="font-label text-xs uppercase tracking-[0.3em] text-pop mb-4 block" data-reveal>Portfolio</span>
+    <h1 class="font-display text-6xl md:text-8xl leading-[0.9] mb-8 max-w-4xl" data-reveal>
+      Progetti <em class="text-pop">reali</em>,<br>risultati veri.
+    </h1>
+    <p class="text-xl text-ink/70 max-w-2xl" data-reveal>
+      Ogni sito è una storia. Qui trovi quelle che ho avuto il piacere di raccontare.
+    </p>
+  </section>
+
+  <section class="px-5 md:px-10">
+    <div class="flex gap-2 overflow-x-auto pb-4 -mx-5 px-5 md:mx-0 md:px-0 scrollbar-hide" data-reveal>
+      {[
+        { k: 'all', l: 'Tutti' },
+        { k: 'vetrina', l: 'Siti vetrina' },
+        { k: 'ecommerce', l: 'E-commerce' },
+        { k: 'restyling', l: 'Restyling' },
+      ].map((f, i) => (
+        <button data-filter={f.k}
+          class:list={['filter-btn whitespace-nowrap rounded-full px-5 py-2.5 font-label text-xs uppercase tracking-wider transition',
+            i === 0 ? 'bg-ink text-base' : 'border border-ink/20 text-ink hover:bg-ink hover:text-base']}>
+          {f.l}
+        </button>
+      ))}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3" id="portfolio-grid">
+      {projects.map(p => (
+        <div data-cat={p.cat} data-reveal>
+          <a href="#" class="group block" onclick="event.preventDefault()">
+            <div class:list={['aspect-[4/3] rounded-4xl overflow-hidden relative flex items-center justify-center', p.color]}>
+              <div class="font-display text-7xl italic text-ink/15 group-hover:scale-110 transition-transform duration-700">
+                {p.title.charAt(0)}
+              </div>
+              <div class="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 text-base">
+                <p class="font-label text-xs uppercase tracking-wider opacity-80">{p.category} · {p.year}</p>
+                <h3 class="font-display text-2xl md:text-3xl mt-1">{p.title}</h3>
+              </div>
+            </div>
+            <div class="mt-4 flex items-center justify-between md:hidden">
+              <h3 class="font-display text-xl">{p.title}</h3>
+              <span class="font-label text-xs uppercase tracking-wider text-pop">{p.category}</span>
+            </div>
+          </a>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section text-center">
+    <h2 class="font-display text-5xl md:text-7xl mb-6" data-reveal>
+      Il prossimo potrebbe essere il <em class="text-pop">tuo</em>.
+    </h2>
+    <a href="/contatti" class="btn-primary mt-6" data-reveal>Racconta il tuo progetto →</a>
+  </section>
+</Base>
+
+<script>
+  const buttons = document.querySelectorAll('[data-filter]');
+  const items = document.querySelectorAll('#portfolio-grid > div');
+  
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const f = btn.getAttribute('data-filter');
+      buttons.forEach(b => {
+        b.classList.remove('bg-ink', 'text-base');
+        b.classList.add('border', 'border-ink/20', 'text-ink');
+      });
+      btn.classList.add('bg-ink', 'text-base');
+      btn.classList.remove('border', 'border-ink/20');
+      items.forEach(item => {
+        const show = f === 'all' || item.getAttribute('data-cat') === f;
+        if (show) {
+          item.style.display = '';
+          item.animate([
+            { opacity: 0, transform: 'scale(0.9)' },
+            { opacity: 1, transform: 'scale(1)' }
+          ], { duration: 400, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' });
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+
+<style is:global>
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+</style>

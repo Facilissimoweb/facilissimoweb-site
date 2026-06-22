@@ -1,0 +1,88 @@
+---
+const currentPath = Astro.url.pathname;
+const nav = [
+  { href: '/',           label: 'Home' },
+  { href: '/chi-siamo',  label: 'Chi sono' },
+  { href: '/servizi',    label: 'Servizi' },
+  { href: '/portfolio',  label: 'Portfolio' },
+  { href: '/contatti',   label: 'Contatti' },
+];
+---
+<header class="fixed top-0 left-0 right-0 z-50
+               bg-base/80 backdrop-blur-md border-b border-muted/50">
+  <div class="flex items-center justify-between px-5 py-4 md:px-10">
+    <a href="/" class="flex items-center gap-2 group">
+      <span class="h-8 w-8 rounded-full bg-pop flex items-center justify-center
+                   font-display text-base text-lg italic
+                   group-hover:rotate-12 transition-transform duration-300">F</span>
+      <span class="font-label text-sm font-bold uppercase tracking-wider text-ink">
+        Facilissimo<span class="text-pop">.</span>
+      </span>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-8">
+      {nav.map(item => (
+        <a href={item.href}
+           class:list={[
+             'font-label text-sm uppercase tracking-wider transition-colors',
+             currentPath === item.href ? 'text-pop' : 'text-ink/70 hover:text-ink'
+           ]}>
+          {item.label}
+        </a>
+      ))}
+      <a href="/contatti" class="btn-primary !py-2 !px-5 !text-xs">Parliamone</a>
+    </nav>
+
+    <button id="menu-toggle"
+      class="md:hidden relative h-10 w-10 flex items-center justify-center"
+      aria-label="Apri menu" aria-expanded="false">
+      <span class="h-0.5 w-6 bg-ink absolute transition-all duration-300 -translate-y-1.5" data-bar="top"></span>
+      <span class="h-0.5 w-6 bg-ink absolute transition-all duration-300" data-bar="mid"></span>
+      <span class="h-0.5 w-6 bg-ink absolute transition-all duration-300 translate-y-1.5" data-bar="bot"></span>
+    </button>
+  </div>
+
+  <nav id="mobile-menu"
+    class="md:hidden fixed inset-0 top-[73px] bg-base z-40
+           flex flex-col justify-between px-6 py-10
+           opacity-0 pointer-events-none transition-opacity duration-300">
+    <div class="flex flex-col gap-6">
+      {nav.map((item, i) => (
+        <a href={item.href}
+           class="font-display text-5xl text-ink border-b border-muted pb-4
+                  transform translate-y-4 opacity-0 transition-all duration-500"
+           style={`transition-delay: ${i * 60}ms`}
+           data-menu-link>
+          {item.label}
+        </a>
+      ))}
+    </div>
+    <a href="/contatti" class="btn-primary w-full">Inizia il progetto</a>
+  </nav>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const bars = toggle?.querySelectorAll('[data-bar]');
+  const links = menu?.querySelectorAll('[data-menu-link]');
+  let open = false;
+
+  toggle?.addEventListener('click', () => {
+    open = !open;
+    toggle.setAttribute('aria-expanded', String(open));
+    menu?.classList.toggle('opacity-0', !open);
+    menu?.classList.toggle('pointer-events-none', !open);
+    bars?.[0].classList.toggle('rotate-45');
+    bars?.[0].classList.toggle('translate-y-0');
+    bars?.[1].classList.toggle('opacity-0');
+    bars?.[2].classList.toggle('-rotate-45');
+    bars?.[2].classList.toggle('translate-y-0');
+    links?.forEach(l => {
+      l.classList.toggle('translate-y-0', open);
+      l.classList.toggle('opacity-100', open);
+    });
+  });
+
+  links?.forEach(l => l.addEventListener('click', () => toggle.click()));
+</script>

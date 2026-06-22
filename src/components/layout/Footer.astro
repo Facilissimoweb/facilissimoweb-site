@@ -1,0 +1,44 @@
+<footer class="bg-ink text-base/80 section mt-20">
+  <div class="grid gap-10 md:grid-cols-3">
+    <div>
+      <p class="font-display text-3xl text-base mb-3">
+        Il web <em class="text-pop">Wow</em>,<br>facilissimo.
+      </p>
+      <p class="text-sm text-base/60">
+        FACILISSIMO WEB di M. Teresa Rogani<br>
+        Web Graphic Designer · Marche, Italia
+      </p>
+    </div>
+
+    <div>
+      <h4 class="font-label text-xs uppercase tracking-wider text-pop mb-4">Navigazione</h4>
+      <ul class="space-y-2 text-sm">
+        <li><a href="/chi-siamo" class="hover:text-pop transition">Chi sono</a></li>
+        <li><a href="/servizi" class="hover:text-pop transition">Servizi</a></li>
+        <li><a href="/portfolio" class="hover:text-pop transition">Portfolio</a></li>
+        <li><a href="/contatti" class="hover:text-pop transition">Contatti</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="font-label text-xs uppercase tracking-wider text-pop mb-4">Legale</h4>
+      <ul class="space-y-2 text-sm">
+        <li><a href="/privacy" class="hover:text-pop transition">Privacy Policy</a></li>
+        <li><a href="/cookie-policy" class="hover:text-pop transition">Cookie Policy</a></li>
+        <li><button id="cookie-revoke" class="hover:text-pop transition text-left">Gestisci cookie</button></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="mt-12 pt-6 border-t border-base/10 flex flex-col md:flex-row justify-between gap-3 text-xs text-base/50">
+    <p>© 2026 FACILISSIMO WEB · P.IVA 00000000000</p>
+    <p>Fatto con ❤️ nelle Marche</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('cookie-revoke')?.addEventListener('click', () => {
+    localStorage.removeItem('cookie-consent');
+    location.reload();
+  });
+</script>

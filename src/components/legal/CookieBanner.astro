@@ -1,0 +1,38 @@
+<div id="cookie-banner"
+  class="fixed bottom-4 left-4 right-4 z-[60]
+         rounded-3xl glass p-5 shadow-2xl
+         md:left-auto md:right-6 md:max-w-sm
+         translate-y-[120%] opacity-0 transition-all duration-500">
+  <p class="font-body text-sm text-base/90 mb-4 leading-relaxed">
+    Usiamo cookie tecnici e, col tuo consenso, analytics per migliorare il sito.
+    <a href="/cookie-policy" class="underline text-pop">Info</a>.
+  </p>
+  <div class="flex gap-2">
+    <button id="cookie-accept" class="flex-1 rounded-xl bg-pop px-4 py-2.5 text-sm font-semibold text-base hover:bg-pop/90 active:scale-95 transition">
+      Accetta
+    </button>
+    <button id="cookie-custom" class="rounded-xl border border-base/20 px-4 py-2.5 text-sm text-base/80 hover:bg-base/10 transition">
+      Solo essenziali
+    </button>
+  </div>
+</div>
+
+<script>
+  const banner = document.getElementById('cookie-banner');
+  const accept = document.getElementById('cookie-accept');
+  const custom = document.getElementById('cookie-custom');
+
+  if (!localStorage.getItem('cookie-consent')) {
+    setTimeout(() => {
+      banner?.classList.remove('translate-y-[120%]', 'opacity-0');
+    }, 800);
+  }
+
+  const save = (val: string) => {
+    localStorage.setItem('cookie-consent', val);
+    banner?.classList.add('translate-y-[120%]', 'opacity-0');
+  };
+
+  accept?.addEventListener('click', () => save('all'));
+  custom?.addEventListener('click', () => save('essential'));
+</script>

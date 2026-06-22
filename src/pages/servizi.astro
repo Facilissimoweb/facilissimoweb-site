@@ -1,0 +1,135 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base
+  title="Servizi — Web Design su misura"
+  description="Siti vetrina, e-commerce, restyling e consulenza web per microimprenditori delle Marche.">
+
+  <section class="section pt-32 md:pt-40">
+    <span class="font-label text-xs uppercase tracking-[0.3em] text-pop mb-4 block" data-reveal>Servizi</span>
+    <h1 class="font-display text-6xl md:text-8xl leading-[0.9] mb-8 max-w-4xl" data-reveal>
+      Cosa posso <em class="text-pop">fare</em> per te.
+    </h1>
+    <p class="text-xl text-ink/70 max-w-2xl leading-relaxed" data-reveal>
+      Soluzioni web pensate per chi ha poco tempo e tante idee. Scegli il percorso più adatto al tuo business.
+    </p>
+  </section>
+
+  <section class="section">
+    <div class="grid gap-6 md:grid-cols-2">
+      {[
+        { n: '01', t: 'Sito Vetrina', d: 'La tua vetrina digitale, perfetta su mobile. Ideale per artigiani, studi professionali, ristoranti.', p: 'da € 1.200', tag: 'Più richiesto' },
+        { n: '02', t: 'E-commerce', d: 'Vendi online i tuoi prodotti con un negozio bello, veloce e facile da gestire.', p: 'da € 2.400', tag: null },
+        { n: '03', t: 'Restyling', d: 'Il tuo sito attuale non ti rappresenta più? Lo rendo moderno, veloce e coerente col tuo brand.', p: 'da € 800', tag: null },
+        { n: '04', t: 'Consulenza', d: "Un'ora insieme per fare il punto sulla tua presenza online e definire i prossimi passi.", p: '€ 120/h', tag: 'Online' },
+      ].map((s, i) => (
+        <div class="group rounded-4xl border border-muted p-8 md:p-10 hover:border-pop hover:shadow-soft transition-all duration-500 relative overflow-hidden" data-reveal>
+          {s.tag && (
+            <span class="absolute top-6 right-6 bg-pop text-base text-[10px] font-label uppercase tracking-wider px-3 py-1 rounded-full">{s.tag}</span>
+          )}
+          <span class="font-label text-sm text-pop">{s.n}</span>
+          <h3 class="font-display text-4xl md:text-5xl mt-3 mb-4 group-hover:italic transition-all">{s.t}</h3>
+          <p class="text-ink/70 leading-relaxed mb-6">{s.d}</p>
+          <div class="flex items-end justify-between pt-6 border-t border-muted">
+            <p class="font-display text-2xl">{s.p}</p>
+            <a href="/contatti" class="font-label text-xs uppercase tracking-wider text-pop hover:underline">Richiedi info →</a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section bg-ink text-base rounded-5xl mx-4 md:mx-10">
+    <h2 class="font-display text-5xl md:text-7xl mb-16" data-reveal>
+      Come <em class="text-pop">lavoriamo</em> insieme.
+    </h2>
+    <div class="grid gap-10 md:grid-cols-4">
+      {[
+        { n: '01', t: 'Ascolto', d: 'Chiacchierata gratuita per capire il tuo business e i tuoi obiettivi.' },
+        { n: '02', t: 'Progetto', d: 'Ti presento wireframe e proposta grafica. Approvi prima di partire.' },
+        { n: '03', t: 'Sviluppo', d: 'Costruisco il sito con aggiornamenti settimanali. Zero sorprese.' },
+        { n: '04', t: 'Lancio', d: 'Mettiamo online. Ti insegno a gestirlo in 30 minuti.' },
+      ].map(s => (
+        <div data-reveal>
+          <span class="font-display text-6xl text-pop/60">{s.n}</span>
+          <h3 class="font-display text-3xl mt-2 mb-3">{s.t}</h3>
+          <p class="text-base/70">{s.d}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="rounded-5xl bg-gradient-to-br from-pop/10 to-muted p-10 md:p-16 grid gap-10 lg:grid-cols-2 items-center">
+      <div data-reveal>
+        <span class="font-label text-xs uppercase tracking-[0.3em] text-pop mb-3 block">Gratis per te</span>
+        <h2 class="font-display text-4xl md:text-6xl mb-4">
+          Checklist: <em class="text-pop">10 errori</em> da evitare nel tuo sito.
+        </h2>
+        <p class="text-ink/70 text-lg mb-6">
+          Scarica la guida PDF che uso con i miei clienti. In 5 minuti capisci cosa migliorare subito.
+        </p>
+        <ul class="space-y-2 text-sm text-ink/70">
+          <li>✓ PDF di 12 pagine, pratico e illustrato</li>
+          <li>✓ Esempi reali di siti marchigiani</li>
+          <li>✓ Ricevi anche la newsletter mensile (1 email/mese, promesso)</li>
+        </ul>
+      </div>
+      <form class="bg-base rounded-4xl p-8 shadow-soft space-y-4" data-reveal data-lead-form>
+        <h3 class="font-display text-2xl mb-2">Scarica la checklist</h3>
+        <div>
+          <input type="text" name="name" required placeholder="Il tuo nome"
+            class="w-full rounded-2xl border border-muted bg-muted/30 px-5 py-3.5 outline-none focus:border-pop transition" />
+        </div>
+        <div>
+          <input type="email" name="email" required placeholder="La tua email"
+            class="w-full rounded-2xl border border-muted bg-muted/30 px-5 py-3.5 outline-none focus:border-pop transition" />
+        </div>
+        <div>
+          <select name="business" class="w-full rounded-2xl border border-muted bg-muted/30 px-5 py-3.5 outline-none focus:border-pop transition">
+            <option value="">Che attività hai?</option>
+            <option>Artigianato</option>
+            <option>Commercio / Negozio</option>
+            <option>Ristorazione</option>
+            <option>Libera professione</option>
+            <option>Altro</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-primary w-full">Invia la checklist →</button>
+        <p class="text-xs text-ink/50 text-center">Rispetto la tua privacy. Niente spam.</p>
+      </form>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="font-display text-5xl md:text-7xl mb-12" data-reveal>Cosa dicono di me</h2>
+    <div class="grid gap-6 md:grid-cols-3">
+      {[
+        { q: 'Teresa ha capito subito lo spirito della mia bottega. Il sito è bellissimo e lo gestisco da sola.', n: 'Marco B.', r: 'Ceramista, Urbania' },
+        { q: 'Finalmente una web designer che parla italiano e non tecnico. Consigliatissima.', n: 'Giulia R.', r: 'Studio legale, Ancona' },
+        { q: 'In 3 mesi dal lancio ho raddoppiato le prenotazioni online. Roba mai vista.', n: 'Luca M.', r: 'Ristorante, Macerata' },
+      ].map(t => (
+        <blockquote class="rounded-4xl bg-muted/40 p-8" data-reveal>
+          <p class="font-display text-2xl italic leading-snug mb-6">"{t.q}"</p>
+          <footer>
+            <p class="font-label text-sm font-bold">{t.n}</p>
+            <p class="text-xs text-ink/60">{t.r}</p>
+          </footer>
+        </blockquote>
+      ))}
+    </div>
+  </section>
+
+  <section class="section text-center">
+    <h2 class="font-display text-5xl md:text-7xl mb-6" data-reveal>
+      Hai un progetto in mente?
+    </h2>
+    <p class="text-lg text-ink/70 max-w-xl mx-auto mb-8" data-reveal>
+      Raccontamelo. Ti rispondo in 24 ore, sempre.
+    </p>
+    <div class="flex flex-wrap gap-3 justify-center" data-reveal>
+      <a href="/contatti" class="btn-primary">Inizia il progetto →</a>
+      <a href="https://wa.me/390000000000" target="_blank" rel="noopener" class="btn-ghost">Scrivimi su WhatsApp</a>
+    </div>
+  </section>
+</Base>

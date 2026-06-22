@@ -1,0 +1,127 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base
+  title="Contatti — Parliamone"
+  description="Contatta FACILISSIMO WEB per una consulenza gratuita. Rispondo in 24 ore.">
+
+  <section class="section pt-32 md:pt-40">
+    <div class="grid gap-12 lg:grid-cols-5 lg:gap-16">
+      <div class="lg:col-span-3">
+        <span class="font-label text-xs uppercase tracking-[0.3em] text-pop mb-4 block" data-reveal>Contatti</span>
+        <h1 class="font-display text-6xl md:text-8xl leading-[0.9] mb-6" data-reveal>
+          Parliamone.<br><em class="text-pop">Senza impegno.</em>
+        </h1>
+        <p class="text-lg text-ink/70 mb-10 max-w-xl" data-reveal>
+          Compila il form o scrivimi direttamente. Rispondo personalmente entro 24 ore, sempre.
+        </p>
+
+        <form class="space-y-5" data-reveal data-lead-form>
+          <div class="grid gap-5 md:grid-cols-2">
+            <div>
+              <label class="font-label text-xs uppercase tracking-wider text-ink/60 mb-2 block">Nome *</label>
+              <input type="text" name="name" required
+                class="w-full rounded-2xl border border-muted bg-muted/30 px-5 py-3.5 outline-none focus:border-pop transition" />
+            </div>
+            <div>
+              <label class="font-label text-xs uppercase tracking-wider text-ink/60 mb-2 block">Email *</label>
+              <input type="email" name="email" required
+                class="w-full rounded-2xl border border-muted bg-muted/30 px-5 py-3.5 outline-none focus:border-pop transition" />
+            </div>
+          </div>
+
+          <div class="grid gap-5 md:grid-cols-2">
+            <div>
+              <label class="font-label text-xs uppercase tracking-wider text-ink/60 mb-2 block">Telefono</label>
+              <input type="tel" name="phone"
+                class="w-full rounded-2xl border border-muted bg-muted/30 px-5 py-3.5 outline-none focus:border-pop transition" />
+            </div>
+            <div>
+              <label class="font-label text-xs uppercase tracking-wider text-ink/60 mb-2 block">Tipo progetto *</label>
+              <select name="project" required
+                class="w-full rounded-2xl border border-muted bg-muted/30 px-5 py-3.5 outline-none focus:border-pop transition">
+                <option value="">Seleziona...</option>
+                <option>Sito vetrina</option>
+                <option>E-commerce</option>
+                <option>Restyling sito esistente</option>
+                <option>Consulenza</option>
+                <option>Non so ancora</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="font-label text-xs uppercase tracking-wider text-ink/60 mb-2 block">Raccontami il progetto *</label>
+            <textarea name="message" rows="5" required
+              class="w-full rounded-2xl border border-muted bg-muted/30 px-5 py-3.5 outline-none focus:border-pop transition resize-none"
+              placeholder="Di cosa si occupa la tua attività? Quali obiettivi hai?"></textarea>
+          </div>
+
+          <div>
+            <label class="font-label text-xs uppercase tracking-wider text-ink/60 mb-2 block">Budget indicativo</label>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+              {['< € 1.500', '€ 1.500 - 3.000', '€ 3.000 - 5.000', '> € 5.000'].map(b => (
+                <label class="cursor-pointer">
+                  <input type="radio" name="budget" value={b} class="peer sr-only" />
+                  <span class="block text-center rounded-2xl border border-muted py-3 text-sm peer-checked:border-pop peer-checked:bg-pop/10 transition">
+                    {b}
+                  </span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <label class="flex items-start gap-3 text-sm text-ink/70">
+            <input type="checkbox" required class="mt-1 accent-pop" />
+            <span>Ho letto e accetto la <a href="/privacy" class="underline text-pop">Privacy Policy</a>. Acconsento al trattamento dei dati per ricevere una risposta.</span>
+          </label>
+
+          <button type="submit" class="btn-primary w-full md:w-auto">Invia richiesta →</button>
+        </form>
+      </div>
+
+      <aside class="lg:col-span-2 lg:sticky lg:top-32 self-start space-y-8">
+        <div class="rounded-4xl bg-muted/40 p-8" data-reveal>
+          <h3 class="font-display text-2xl mb-6">Contatti diretti</h3>
+          <ul class="space-y-4 text-sm">
+            <li class="flex items-start gap-3">
+              <span class="text-pop">✉</span>
+              <div>
+                <p class="font-label text-xs uppercase tracking-wider text-ink/50 mb-1">Email</p>
+                <a href="mailto:ciao@facilissimoweb.com" class="hover:text-pop transition">ciao@facilissimoweb.com</a>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-pop">☎</span>
+              <div>
+                <p class="font-label text-xs uppercase tracking-wider text-ink/50 mb-1">Telefono / WhatsApp</p>
+                <a href="tel:+390000000000" class="hover:text-pop transition">+39 000 000 0000</a>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-pop">◉</span>
+              <div>
+                <p class="font-label text-xs uppercase tracking-wider text-ink/50 mb-1">Zona operativa</p>
+                <p>Marche, Italia · Lavoro da remoto in tutta Italia</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="rounded-4xl bg-ink text-base p-8" data-reveal>
+          <h3 class="font-display text-2xl mb-3">Preferisci i social?</h3>
+          <p class="text-base/70 text-sm mb-5">Seguimi per consigli, dietro le quinte e mini-tutorial.</p>
+          <div class="flex gap-2">
+            <a href="https://instagram.com/facilissimoweb" class="flex-1 rounded-full bg-base/10 hover:bg-pop py-2.5 text-center text-sm transition">Instagram</a>
+            <a href="https://linkedin.com/in/facilissimoweb" class="flex-1 rounded-full bg-base/10 hover:bg-pop py-2.5 text-center text-sm transition">LinkedIn</a>
+          </div>
+        </div>
+
+        <div class="rounded-4xl border border-pop p-6 text-center" data-reveal>
+          <p class="font-display text-xl mb-2">⚡ Rispondo in <span class="text-pop">24h</span></p>
+          <p class="text-sm text-ink/60">Lun-Ven · 9:00-18:00</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+</Base>

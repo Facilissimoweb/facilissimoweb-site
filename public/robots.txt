@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://facilissimoweb.com/sitemap-index.xml
