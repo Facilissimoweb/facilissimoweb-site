@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "jsx": "preserve",
+    "jsxImportSource": "astro",
+    "types": ["astro/client"],
+    "moduleResolution": "node",
+    "allowJs": true,
+    "checkJs": false,
+    "strict": true
+  },
+  "extends": "astro/tsconfigs/strict"
+}

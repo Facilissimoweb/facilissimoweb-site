@@ -74,12 +74,18 @@ import Base from '../layouts/Base.astro';
 </Base>
 
 <script>
-  import('gsap').then(({ gsap }) => {
-    gsap.to('[data-hero-tag]', { opacity: 1, y: 0, duration: 0.8, delay: 0.2 });
-    gsap.from('[data-hero-word]', {
-      y: '110%', duration: 1, ease: 'power4.out', stagger: 0.12, delay: 0.3,
+  function initHero() {
+    import('gsap').then(({ gsap }) => {
+      gsap.set('[data-hero-tag], [data-hero-sub], [data-hero-cta]', { opacity: 0, y: 20 });
+      gsap.to('[data-hero-tag]', { opacity: 1, y: 0, duration: 0.8, delay: 0.2 });
+      gsap.from('[data-hero-word]', {
+        y: '110%', duration: 1, ease: 'power4.out', stagger: 0.12, delay: 0.3,
+      });
+      gsap.to('[data-hero-sub]', { opacity: 1, y: 0, duration: 0.8, delay: 1 });
+      gsap.to('[data-hero-cta]', { opacity: 1, y: 0, duration: 0.8, delay: 1.2 });
     });
-    gsap.to('[data-hero-sub]', { opacity: 1, y: 0, duration: 0.8, delay: 1 });
-    gsap.to('[data-hero-cta]', { opacity: 1, y: 0, duration: 0.8, delay: 1.2 });
-  });
+  }
+
+  initHero();
+  document.addEventListener('astro:after-swap', initHero);
 </script>

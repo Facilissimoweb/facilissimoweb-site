@@ -1,4 +1,5 @@
 ---
+import { ClientRouter } from 'astro:transitions';
 import '../styles/global.css';
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
@@ -50,6 +51,7 @@ const {
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <ClientRouter />
 </head>
 <body class="overflow-x-hidden">
   <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-pop focus:text-base focus:px-4 focus:py-2 focus:rounded-full">
@@ -63,7 +65,16 @@ const {
   </main>
 
   <Footer />
-  <CookieBanner client:load />
-  <ChatBubble client:visible />
+  <CookieBanner />
+  <ChatBubble />
+  <script>
+    import { initAllAnimations } from '../lib/animations';
+
+    // Inizializza animazioni
+    initAllAnimations();
+
+    // Riesegui dopo la navigazione (View Transitions)
+    document.addEventListener('astro:after-swap', initAllAnimations);
+  </script>
 </body>
 </html>
